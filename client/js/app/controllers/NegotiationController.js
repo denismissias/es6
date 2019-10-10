@@ -5,15 +5,29 @@ class NegotiationController {
         this._inputDate = binding('#data');
         this._inputQuantity = binding('#quantidade');
         this._inputValue = binding('#valor');
+        this._negotiationList = new NegotiationList();
     }
 
     add(event) {
         event.preventDefault();
 
-        let date = new Date(...this._inputDate.value.split('-').map((item, index) => item - index % 2));
+        this._negotiationList.add(this._createNegotiation());
+        this._clearForm();
+        
+        console.log(this._negotiationList.negotiations);
+    }
 
-        let negotiation = new Negotiation(date, this._inputQuantity.value, this._inputValue.value);
+    _createNegotiation() {
+        let date = DateHelper.textToDate(this._inputDate.value);
 
-        console.log(negotiation);
+        return new Negotiation(date, this._inputQuantity.value, this._inputValue.value);
+    }
+
+    _clearForm() {
+        this._inputDate.value = "";
+        this._inputQuantity.value = 1,
+        this._inputValue.value = 0.0;
+
+        this._inputDate.focus();
     }
 }
