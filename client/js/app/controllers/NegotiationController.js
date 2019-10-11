@@ -6,12 +6,16 @@ class NegotiationController {
         this._inputQuantity = binding('#quantidade');
         this._inputValue = binding('#valor');
         this._negotiationList = new NegotiationList();
+        this._negotiationView = new NegotiationView(document.getElementById('negotiationsView'));
+
+        this._negotiationView.update(this._negotiationList);
     }
 
     add(event) {
         event.preventDefault();
 
         this._negotiationList.add(this._createNegotiation());
+        this._negotiationView.update(this._negotiationList);
         this._clearForm();
         
         console.log(this._negotiationList.negotiations);
