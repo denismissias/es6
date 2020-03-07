@@ -1,10 +1,12 @@
 class NegotiationList  {
-    constructor() {
-        this._negotiations = []
+    constructor(a) {
+        this._negotiations = [];
+        this._a = a;
     }
 
     add(negotiation) {
         this._negotiations.push(negotiation);
+        this._a(this);
     }
 
     get negotiations() {
@@ -12,6 +14,7 @@ class NegotiationList  {
     }
 
     clear() {
-        this._negotiations = []
+        this._negotiations = [];
+        this._a(this);
     }
 }

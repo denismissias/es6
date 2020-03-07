@@ -6,7 +6,8 @@ class NegotiationController {
         this._inputQuantity = binding('#quantidade');
         this._inputValue = binding('#valor');
 
-        this._negotiationList = new NegotiationList();
+        this._negotiationList = new NegotiationList(model => this._negotiationView.update(model));
+
         this._negotiationView = new NegotiationView(binding('#negotiationsView'));
 
         this._message = new Message();
@@ -17,7 +18,6 @@ class NegotiationController {
         event.preventDefault();
 
         this._negotiationList.add(this._createNegotiation());
-        this._negotiationView.update(this._negotiationList);
 
         this._message.text = "Negociação adicionada com sucesso";
         this._messageView.update(this._message);
@@ -27,7 +27,6 @@ class NegotiationController {
 
     clear() {
         this._negotiationList.clear();
-        this._negotiationView.update(this._negotiationList);
 
         this._message.text = "Negociações apagadas com sucesso";
         this._messageView.update(this._message);
