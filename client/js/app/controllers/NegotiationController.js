@@ -5,10 +5,12 @@ class NegotiationController {
         this._inputDate = binding('#data');
         this._inputQuantity = binding('#quantidade');
         this._inputValue = binding('#valor');
-        this._negotiationList = new NegotiationList();
-        this._negotiationView = new NegotiationView(document.getElementById('negotiationsView'));
 
-        this._negotiationView.update(this._negotiationList);
+        this._negotiationList = new NegotiationList();
+        this._negotiationView = new NegotiationView(binding('#negotiationsView'));
+
+        this._message = new Message();
+        this._messageView = new MessageView(binding('#messageView'));
     }
 
     add(event) {
@@ -16,9 +18,19 @@ class NegotiationController {
 
         this._negotiationList.add(this._createNegotiation());
         this._negotiationView.update(this._negotiationList);
+
+        this._message.text = "Negociação adicionada com sucesso";
+        this._messageView.update(this._message);
+
         this._clearForm();
-        
-        console.log(this._negotiationList.negotiations);
+    }
+
+    clear() {
+        this._negotiationList.clear();
+        this._negotiationView.update(this._negotiationList);
+
+        this._message.text = "Negociações apagadas com sucesso";
+        this._messageView.update(this._message);
     }
 
     _createNegotiation() {

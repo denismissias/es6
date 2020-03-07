@@ -10,4 +10,8 @@ class NegotiationList  {
     get negotiations() {
         return this._negotiations;
     }
+
+    clear() {
+        this._negotiations = []
+    }
 }

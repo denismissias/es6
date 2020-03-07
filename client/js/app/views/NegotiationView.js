@@ -1,9 +1,5 @@
-class NegotiationView{
-    constructor(element) {
-        this._element = element
-    }
-
-    _template(model) {
+class NegotiationView extends View{
+    template(model) {
         return `<table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -27,9 +23,5 @@ class NegotiationView{
                         <td>${model.negotiations.reduce((total, n) => total + n.volume, 0.0)}</td>
                     </tfoot>
                 </table>`
-    }
-
-    update(model) {
-        this._element.innerHTML = this._template(model);
     }
 }
